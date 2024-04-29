@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+      
+  nginx:
+    container_name: rp_waitress
+    image: rp_waitress:latest
+    ports:
+      - 8080:8080
+    links:
+     - waitress_app
+
+  waitress_app:
+    container_name: waitress_hello
+    image: testflask:latest
+    environment:
+      - APP_MODULE=app:app
+    ports:
+      - "5000:5000"
